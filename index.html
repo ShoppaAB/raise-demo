@@ -52,3 +52,14 @@
     </div>
 </body>
 </html>
+<script>
+  let value = 10;
+  setInterval(()=>{
+    value--;
+    if(value<1)
+      value = 10;
+    
+    document.querySelector(".number").innerHTML = value.toString();
+    
+  }, 10000)
+</script>
