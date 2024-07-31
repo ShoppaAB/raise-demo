@@ -1,65 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Timer Display</title>
-      <style>
-      body, html {
-          margin: 0;
-          padding: 0;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background-color: #f0f0f000;
-          font-family: system-ui;
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #f0f0f000;
+        font-family: system-ui;
       }
-      
+
+      .top-bar {
+        display: fixed;
+        position: absolute;
+        top: 1rem;
+        color: blue;
+        font-weight: 700;
+      }
+
       .black-square {
-          width: 50vh;
-          height: 50vh;
-          background-color: black;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: column;
+        width: 50vh;
+        height: 50vh;
+        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
       }
-      
+
       .content {
-          text-align: center;
+        text-align: center;
       }
-      
+
       .number {
-          font-size: 25vh;
-          color: white;
-          font-weight: bold;
+        font-size: 25vh;
+        color: white;
+        font-weight: bold;
       }
-      
+
       .text {
-          font-size: 5vh;
-          color: white;
+        font-size: 5vh;
+        color: white;
       }
     </style>
-
-</head>
-<body>
-    <div class="black-square">
-        <div class="content">
-            <div class="number">5</div>
-            <div class="text">minutes</div>
-        </div>
+  </head>
+  <body>
+    <div class="top-bar">
+      <div id="customerId"></div>
+      <div id="playerId"></div>
+      <div id="directorId"></div>
+      <div id="aspectRatio"></div>
     </div>
-</body>
+
+    <div class="black-square">
+      <div class="content">
+        <div class="number">5</div>
+        <div class="text">minutes</div>
+      </div>
+    </div>
+  </body>
 </html>
 <script>
+  const params = getUrlParams();
+  for (const [key, value] of Object.entries(params)) {
+    const element = document.getElementById(key);
+    if (element) {
+      element.innerText = key + ": " + value;
+    }
+  }
+
   let value = 10;
-  setInterval(()=>{
+  setInterval(() => {
     value--;
-    if(value<1)
-      value = 10;
-    
+    if (value < 1) value = 10;
+
     document.querySelector(".number").innerHTML = value.toString();
-    
-  }, 10000)
+  }, 10000);
+
+  function getUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    let result = {};
+    for (let [key, value] of params.entries()) {
+      result[key] = value;
+    }
+    return result;
+  }
 </script>
