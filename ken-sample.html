@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Välkommen till Nikita Hair</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            height: 100%;
+        }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .image {
+            position: absolute;
+            width: 150vw; /* Make the image larger than the viewport */
+            height: 150vh; /* Keep aspect ratio similar to avoid stretching */
+            top: -25vh; /* Center the image vertically within the viewport */
+            left: -25vw; /* Center the image horizontally */
+            animation: pan 20s infinite linear;
+        }
+
+	iframe {
+		position: absolute;
+		width:100%;
+		height:100%;
+		top:0;
+		left:0;
+		border:0;
+	}
+
+        .scrolling-text-container {
+            position: fixed;
+            top: 0;
+            width: 100vw;
+	        height: 2em;
+            padding: 1em;
+            overflow: hidden;
+            background-color: #00000080; /* Optional: to highlight the text background */
+        }
+
+        .scrolling-text {
+            position: absolute;
+            white-space: nowrap;
+            color: white;
+            font-size: 24px;
+            animation: scroll 10s linear infinite;
+            margin-top: 1px;
+	    font-style: system-ui;
+        }
+
+        @keyframes pan {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(-20vw, 10vh); /* Move the image to pan across it */
+            }
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(160%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="Nikita-Hair-frisor.jpg" alt="Panning Image" class="image">
+    </div>
+
+    <iframe title="timer" src="https://shoppaab.github.io/raise-demo/index.html"></iframe>
+
+    <div class="scrolling-text-container">
+        <div class="scrolling-text">Vi har tid för dig alldeles strax. Välkommen in!</div>
+    </div>
+</body>
+</html>
