@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,43 +11,61 @@
             padding: 0;
         }
 
-        body, html {
+        body,
+        html {
             height: 100%;
+        }
+
+        /* Rotate the entire page content */
+        .rotated-container {
+            position: absolute;
+            width: 100vh; /* Switch width and height due to rotation */
+            height: 100vw;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(90deg); /* Rotate the page 90 degrees */
+            transform-origin: center;
+            background-color: black;
         }
 
         .container {
             position: relative;
-            width: 100vw;
-            height: 100vh;
+            width: 100vh;
+            height: 100vw;
             overflow: hidden;
         }
 
         .image {
             position: absolute;
-            width: 150vw; /* Make the image larger than the viewport */
-            height: 150vh; /* Keep aspect ratio similar to avoid stretching */
-            top: -25vh; /* Center the image vertically within the viewport */
-            left: -25vw; /* Center the image horizontally */
-            animation: pan 20s infinite linear;
+            width: 120vh;
+            /* Make the image larger than the viewport */
+            height: 120vw;
+            /* Keep aspect ratio similar to avoid stretching */
+            top: -20vh;
+            /* Center the image vertically within the viewport */
+            left: 0vh;
+            /* Center the image horizontally */
+            animation: pan 20s infinite ease-in-out;
         }
 
-	iframe {
-		position: absolute;
-		width:100%;
-		height:100%;
-		top:0;
-		left:0;
-		border:0;
-	}
+        iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border: 0;
+        }
 
         .scrolling-text-container {
             position: fixed;
             top: 0;
             width: 100vw;
-	        height: 2em;
+            height: 2em;
             padding: 1em;
             overflow: hidden;
-            background-color: #00000080; /* Optional: to highlight the text background */
+            background-color: #00000080;
+            /* Optional: to highlight the text background */
         }
 
         .scrolling-text {
@@ -56,37 +75,53 @@
             font-size: 24px;
             animation: scroll 10s linear infinite;
             margin-top: 1px;
-	    font-style: system-ui;
+            font-style: system-ui;
         }
 
         @keyframes pan {
             0% {
                 transform: translate(0, 0);
             }
+
+            40% {
+                transform: translate(-20vh, 10vw);
+                /* Move the image to pan across it */
+            }
+
+            70% {
+                transform: translate(-20vh, 0vw);
+                /* Move the image to pan across it */
+            }
+
             100% {
-                transform: translate(-20vw, 10vh); /* Move the image to pan across it */
+                transform: translate(0, 0);
             }
         }
 
         @keyframes scroll {
             0% {
-                transform: translateX(160%);
+                transform: translateX(240%);
             }
+
             100% {
                 transform: translateX(-100%);
             }
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <img src="Nikita-Hair-frisor.jpg" alt="Panning Image" class="image">
-    </div>
+    <div class="rotated-container">
+        <div class="container">
+            <img src="Nikita-Hair-frisor.jpg" alt="Panning Image" class="image">
+        </div>
 
-    <iframe title="timer" src="https://shoppaab.github.io/raise-demo/index.html"></iframe>
+        <iframe title="timer" src="https://shoppaab.github.io/raise-demo/index.html"></iframe>
 
-    <div class="scrolling-text-container">
-        <div class="scrolling-text">Vi har tid för dig alldeles strax. Välkommen in!</div>
+        <div class="scrolling-text-container">
+            <div class="scrolling-text">Vi har tid för dig alldeles strax. Välkommen in!</div>
+        </div>
     </div>
 </body>
+
 </html>
